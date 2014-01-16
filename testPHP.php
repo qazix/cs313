@@ -6,11 +6,14 @@
 	<body>
 		<div>
 		<?php
-			$x = 1;
-			while($x <= 10)
+			$list["friend"] = "Bob";
+			$list["enemy"] = "Fran";
+			$list[1] = "me";
+			$list[0] = "you";
+			
+			foreach ($list as $key => $val)
 			{
-				echo "<div><p>This is div $x </p></div>";
-				$x++;
+				echo "<div id = $key><p>This is div $val </p></div>";
 			}
 		?>
 		</div>
