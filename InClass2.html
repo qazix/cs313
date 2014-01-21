@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Student Information</title>
+	</head>
+	<body>
+		<h1>Student Information</h1><hr>
+		<form action="showInfo.php" method="post">
+			<p>Name: <input type="text" name="name"></p>
+			<p>Email: <input type="text" name="email"></p>
+			<p>Major: <br/>
+				<input type="radio" name="major" value="CS"> Computer Science <br/>
+				<input type="radio" name="major" value="WD"> Web Development <br/>
+				<input type="radio" name="major" value="CIT"> Computer Information Technology <br/>
+				<input type="radio" name="major" value="CE"> Computer Engineering </p>
+			<p>Places you've visited: <br/>
+				<input type="checkbox" name="places" value="NA"> North America <br/>
+				<input type="checkbox" name="places" value="SA"> South America <br/>
+				<input type="checkbox" name="places" value="EU"> Europe <br/>
+				<input type="checkbox" name="places" value="ASIA"> Asia <br/>
+				<input type="checkbox" name="places" value="AUS"> Australia <br/>
+				<input type="checkbox" name="places" value="AF"> Africa <br/>
+				<input type="checkbox" name="places" value="ANT"> Antarctica <br/></p>
+			<p>Comments:<br/>
+				<textarea rows="10" cols="80" name="comment"></textarea></p>
+			<input type=submit>
+		</form>
+	</body>
+</html>

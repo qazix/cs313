@@ -13,7 +13,7 @@
 			
 			foreach ($list as $key => $val)
 			{
-				echo "<div id = $key><p>This is div $val </p></div>";
+				echo "<div id = $key><p>This is div $val </p></div>\n";
 			}
 		?>
 		</div>
