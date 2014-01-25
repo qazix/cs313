@@ -22,6 +22,7 @@
 				<input type="checkbox" name="pos[]" value="supp">Support<br/>
 				<input type="checkbox" name="pos[]" value="na">I don"t play<br/>
       </div>
+      <input id="response" name="response" type="text" hidden="true"></input>
       <input type="button" value="Submit" name="response" onclick="submit(this)"/>
       <input type="button" value="Cancel" name="response" onclick="submit(this)"/>
    </form>

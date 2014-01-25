@@ -28,8 +28,18 @@ function validGender(obj)
 
 function submit(obj)
 {  
-   if(obj.value == "Cancel" || (obj.value == "Submit" && 
-                               validName(document.getElementById("name")) &&
-                               validGender(document.getElementById("gender"))))
+   if(obj.value == "Submit")
+   {
+     if(validName(document.getElementById("name")) &&
+        validGender(document.getElementById("gender")))
+      {
+         document.getElementById("response") = "true"
          document.getElementById("form").submit();
+      }
+   }
+   else
+   {
+      document.getElementById("response") = "false"
+      document.getElementById("form").submit();
+   }
 }
