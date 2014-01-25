@@ -12,7 +12,7 @@
    }
    else
    {
-      session.start();    
+      session_start();    
       $_SESSION['responded'] = false;
       $page = "phphelper/survey.php";
    }
