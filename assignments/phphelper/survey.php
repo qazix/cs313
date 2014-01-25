@@ -4,7 +4,7 @@
 </head>
 <body>
    <p>This is the Survey</p>
-   <form id="form" class="form" action="1survey.php" method="POST">
+   <form id="form" class="form" action="1survey.php" method="GET">
       <p>Name <input type="text" id="name" name="name" onblur="validName(this)"></input></p>
       <p>Gender <select id="gender" name="gender" onblur="validGender(this)">
                   <option value="na"> </option>
