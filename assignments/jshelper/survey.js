@@ -39,7 +39,7 @@ function submit(obj)
    }
    else
    {
-      document.getElementById("response").value = "false";
+      document.getElementById("response")("value", "false");
       document.getElementById("form").submit();
    }
 }
