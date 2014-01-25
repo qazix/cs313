@@ -3,7 +3,7 @@
    
    if(isset($_SESSION['responded']) && $SESSION['responded'])
    {  
-      setcookie('responded') = true;
+      setcookie('responded', true, $timeLimit);
    }
    
    if(isset($_COOKIE['responded']))
