@@ -1,12 +1,12 @@
 <?php
    $timeLimit = 60 * 60 * 24 * 30;
    
-   if(isset $_SESSION['responded'] && $SESSION['responded'])
+   if(isset($_SESSION['responded']) && $SESSION['responded'])
    {  
       setcookie('responded') = true;
    }
    
-   if(isset $_COOKIE['responded'])
+   if(isset($_COOKIE['responded']))
    {
       $page = "phphelper/results.php";
    }
