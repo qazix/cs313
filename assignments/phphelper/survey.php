@@ -4,7 +4,7 @@
 </head>
 <body>
    <p>This is the Survey</p>
-   <form class="form" onsubmit="return 1SurveyValidate()" action="1survey.php" method="POST">
+   <form class="form" action="1survey.php" method="POST">
       <p>Name <input type="text" id="name" name="name" onblur="validName(this)"></input></p>
       <p>Gender <select id="gender" name="gender" onblur="validGender(this)">
                   <option value="na"> </option>
@@ -22,7 +22,7 @@
 				<input type="checkbox" name="pos[]" value="supp">Support<br/>
 				<input type="checkbox" name="pos[]" value="na">I don"t play<br/>
       </div>
-      <button type="submit" value="Submit"/>
-      <button type="cancel" value="Cancel"/>
+      <input type="button" value="Submit" name="response" onclick="submit(this)"/>
+      <input type="button" value="Cancel" name="response" onclick="submit(this)"/>
    </form>
 </body>

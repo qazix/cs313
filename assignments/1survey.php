@@ -2,7 +2,7 @@
    $timeLimit = 60 * 60 * 24 * 30;
    
    if((isset($_SESSION['responded']) && $_SESSION['responded']) ||
-      ($_POST['response']) ||
+      ($_POST['response'] == "Submit") ||
       (isset($_COOKIE['responded']) && $_COOKIE['responded']))
    {  
       setcookie('responded', true, $timeLimit);
