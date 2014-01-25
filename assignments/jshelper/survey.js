@@ -33,13 +33,13 @@ function submit(obj)
      if(validName(document.getElementById("name")) &&
         validGender(document.getElementById("gender")))
       {
-         document.getElementById("response").value = "true"
+         document.getElementById("response")set("value", "true");
          document.getElementById("form").submit();
       }
    }
    else
    {
-      document.getElementById("response").value = "false"
+      document.getElementById("response").value = "false";
       document.getElementById("form").submit();
    }
 }
