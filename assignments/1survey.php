@@ -20,5 +20,5 @@
 
 <!DOCTYPE html>
 <html>
-   <?php echo $page;?>
+   <?php echo file_get_contents($page);?>
 </html>
