@@ -1,15 +1,16 @@
 function validName(obj)
 {
-   if(obj.value == "")
+   if(obj == "")
    {
-      obj.backgroundcolor = red;
+      // obj.backgroundcolor = red;
       return false;
    }
    else
    {
-      obj.backgroundcolor = green;
+      // obj.backgroundcolor = green;
       return true;
    }
+   return false;
 }
 
 function validGender(obj)
@@ -24,22 +25,24 @@ function validGender(obj)
       obj.backgroundcolor = green;
       return true;
    }
+   return false;
 }
 
-function submit(obj)
+function submitForm(obj)
 {  
-   if(obj.value == "Submit")
+   alert("hi");
+   if(obj == "Submit")
    {
      if(validName(document.getElementById("name")) &&
         validGender(document.getElementById("gender")))
       {
-         document.getElementById("response")set("value", "true");
+         document.getElementById("response").set("value", "true");
          document.getElementById("form").submit();
       }
    }
    else
    {
-      document.getElementById("response")("value", "false");
+      document.getElementById("response").value = "false";
       document.getElementById("form").submit();
    }
 }
