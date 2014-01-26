@@ -5,8 +5,8 @@
 <body>
    <p>This is the Survey</p>
    <form id="form" class="form" action="1survey.php" method="GET">
-      <p>Name <input type="text" id="name" name="name" onblur="validName(this)"></input></p>
-      <p>Gender <select id="gender" name="gender" onblur="validGender(this)">
+      <p>Name <input type="text" id="name" name="name" onblur="validName(value)"></input></p>
+      <p>Gender <select id="gender" name="gender" onblur="validGender(value)">
                   <option value="na"> </option>
                   <option value="ma">Male</option>
                   <option value="fe">Female</option>
@@ -23,7 +23,7 @@
 				<input type="checkbox" name="pos[]" value="na">I don"t play<br/>
       </div>
       <input id="response" name="response" type="text" hidden="true"></input>
-      <input type="button" value="Submit" name="response" onclick="submit(this)"/>
-      <input type="button" value="Cancel" name="response" onclick="submit(this)"/>
+      <input type="button" value="Submit" onclick="submitForm('Submit')"/>
+      <input type="button" value="Cancel" onclick="submitForm('Cancel')"/>
    </form>
 </body>
