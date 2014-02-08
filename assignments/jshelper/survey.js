@@ -1,28 +1,31 @@
-function validName(obj)
+function validName()
 {
-   if(obj == "")
+   var obj = document.getElementById("name");
+
+   if(obj.value == "" || obj.value == null)
    {
-      // obj.backgroundcolor = red;
+      obj.style.backgroundColor = "red";
       return false;
    }
    else
    {
-      // obj.backgroundcolor = green;
+      obj.style.backgroundColor = "LawnGreen";
       return true;
    }
    return false;
 }
 
-function validGender(obj)
+function validGender()
 {
+   var obj = document.getElementById("gender");
    if(obj.value == "na")
    {
-      obj.backgroundcolor = red;
+      obj.style.backgroundColor = "Red";
       return false;
    }
    else
    {
-      obj.backgroundcolor = green;
+      obj.style.backgroundColor = "LawnGreen";
       return true;
    }
    return false;
@@ -30,13 +33,12 @@ function validGender(obj)
 
 function submitForm(obj)
 {  
-   alert("hi");
    if(obj == "Submit")
    {
-     if(validName(document.getElementById("name")) &&
-        validGender(document.getElementById("gender")))
+     if(validName(document.getElementById("name").value) &&
+        validGender(document.getElementById("gender").value))
       {
-         document.getElementById("response").set("value", "true");
+         document.getElementById("response").value = "true";
          document.getElementById("form").submit();
       }
    }
