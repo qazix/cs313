@@ -4,25 +4,39 @@
    $DBPass   = 'DF_PASS';
    $DBName   = 'drinkingFountains';
    $mysqli = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
+     
+   session_start();
+   $loggedIn = false;
+   
+   if(isset($_SESSION['username']))
+   {
+      $loggedIn = true;
+   }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
    <title>Drinking Fountains of BYUI</title>
+   <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
    <script type="text/javascript" src="jshelper/db_refine.js"></script>
+	<link href="css/db.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-   <header><h2>Welcome to drink BYUI!</h2><h6>Helping you find the best drinking fountains since 2014</h6></header>
+   <header>
+      <h2>Welcome to drink BYUI!</h2>
+      <h6>Helping you find the best drinking fountains since 2014</h6>
+      <h5><a href="phphelper/signIn.php">Log in</a>  <a href="phphelper/signUp.php">Sign Up</a></h5>
+   </header>
 
-   <form action="database.php" method="POST" id="form">
-   <table>
+   <form action="database.php" method="POST" id="results">
+      <table>
       <thead>
          <tr>
             <th><select name="building" onchange="submitForm(this)"><option value="na" selected="selected">Building</option>;
                   <?php  
                   //This section here grabs all the buildings from my database
-                     $buildings = $mysqli->query("SELECT * FROM buildings");
+                     $buildings = $mysqli->query("SELECT * FROM buildings ORDER BY building_name");
                      while ($row = $buildings->fetch_assoc())
                      {
                         echo "<option value=\"" . $row["id"] . "\""; 
@@ -63,7 +77,8 @@
                   }                 
                ?>
             </th>
-            <th>Near Room Number</th>
+            <th>Near Room #</th>
+            <th>Size</th>
             <th>
                <select name="bottle" onchange="submitForm(this)">
                   <?php
@@ -71,7 +86,7 @@
                      echo "<option value=\"2\" ";
                      if(isset($_POST["bottle"]) && $_POST["bottle"] == "2")
                         echo "selected=\"selected\"";
-                     echo ">Don't Care</option>";
+                     echo ">Bottle Fill?</option>";
                      
                      echo "<option value=\"0\" ";
                      if(isset($_POST["bottle"]) && $_POST["bottle"] == "0")
@@ -93,7 +108,7 @@
                         echo "selected=\"selected\"";
                      echo ">Rating Descending</option>";
                      
-                     echo "<option value=\"\" ";
+                     echo "<option value='' ";
                      if(isset($_POST["rating"]) && $_POST["rating"] == "")
                         echo "selected=\"selected\"";
                      echo ">Rating Ascending</option>";
@@ -106,7 +121,7 @@
          <?php
             //string to use in querying the db
             $query = "SELECT rating, has_bottle_fill,
-            b.building_name, l.floor, l.near_room_num FROM drinkingFountains
+            b.building_name, l.floor, l.near_room_num, d.id, d.size_id FROM drinkingFountains
             AS d JOIN locations AS l ON d.location_id = l.id JOIN buildings 
             AS b ON l.building_id = b.id";
             
@@ -137,24 +152,37 @@
             $query = $query . " ORDER BY d.rating ";
             if (isset($_POST["rating"]))
             {
-               $query = $query . $_POST["rating"];
+               $query = $query . $_POST['rating'];
             }
+            else
+            {
+               $query = $query . "DESC";
+            }
+            $query = $query . " LIMIT 40";
              
             $results = $mysqli->query($query);
             while($row = $results->fetch_assoc())
             {
-               echo "<tr><td>" . $row["building_name"] . "</td><td>" .
-                    $row["floor"] . "</td><td>" . $row["near_room_num"] . 
-                    "</td><td>";
+               echo "<tr onclick=\"changePage('phphelper/loadFount.php?fount=".$row['id']."')\";><td>" . 
+                     $row["building_name"] . "</td><td align='center'>" .
+                     $row["floor"] . "</td><td align='center'>" . $row["near_room_num"] . 
+                     "</td>";
+                     
+               if ($row["size_id"] == 1)
+                  echo "<td align='center'>Adult</td>";
+               else 
+                  echo "<td align='center'>Child</td>";
+                  
                if ($row["has_bottle_fill"] == 1)
-                  echo "Yes";
+                  echo "<td align='center'>Yes</td>";
                else
-                  echo "No";
-               echo "</td><td>" . $row["rating"] . "</td></tr>";   
+                  echo "<td align='center'>No</td>";
+               echo "</td><td align='center'>" . sprintf("%.1f", $row["rating"]) . "</td></tr>";   
             }
          ?>
       </tbody>
    </table>
    </form>
+   <a href="phphelper/newFountain.php"><button>New Fountain</button></a>
 </body>
 </html>
